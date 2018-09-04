@@ -1,14 +1,13 @@
 var login = require('./login');
+var files = require('./appfiles');
+
 var https = require('https');
 
 var email = login.email,
     password = login.password,
     data = {
         branch: 'default',         
-        modules: {
-            main: 'require("hello");',
-            hello: 'console.log("Hello World!");'
-        }
+        modules: files.getSources()
     };
 
 var req = https.request({
@@ -23,6 +22,6 @@ var req = https.request({
 });
 
 var body = JSON.stringify(data);
-console.log(body);
 req.write(JSON.stringify(data));
 req.end();
+console.log('pushed');
