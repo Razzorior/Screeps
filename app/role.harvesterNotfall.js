@@ -2,11 +2,16 @@ var roleHarvesterNotfall = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-	    if(creep.carry.energy < creep.carryCapacity) {
+	    if(creep.carry.energy == 0) {
+            creep.memory.farming = true;
+        } else if (creep.carry.energy == creep.carryCapacity) {
+            creep.memory.farming = false;
+        }
+        if (creep.memory.farming == true) {
             var sources = creep.room.find(FIND_SOURCES_ACTIVE);
             if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
-    }
+            }
         }
         else {
             var targets = creep.room.find(FIND_STRUCTURES, {
