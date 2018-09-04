@@ -1,0 +1,20 @@
+{
+  "name": "razzoriorsscreeps",
+  "version": "1.0.0",
+  "description": "Screeps of Razzorior",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "push": "node push.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Razzorior/Screeps.git"
+  },
+  "author": "Razzorior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Razzorior/Screeps/issues"
+  },
+  "homepage": "https://github.com/Razzorior/Screeps#readme"
+}
