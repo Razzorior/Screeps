@@ -7,9 +7,9 @@ var roleHarvester = {
             if(creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[1], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
-            if((creep.pos.x == 9 && creep.pos.y == 46)) {
+         /*   if((creep.pos.x == 9 && creep.pos.y == 46)) {
                 creep.moveTo(9,45);
-            }
+            }*/
       /*  }
         else {
             var targets = creep.room.find(FIND_STRUCTURES, {

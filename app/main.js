@@ -90,7 +90,7 @@ module.exports.loop = function () {
     }*/
     
 
-    if(harvesters < 0) {
+    if(harvesters < 1) {
         var newName = 'Harvester_' + HOME + '_' +  Game.time;
         //console.log('Spawning new harvester: ' + newName);
         Game.spawns[Spawn1].spawnCreep([WORK,WORK,WORK,WORK,WORK,MOVE], newName, 
@@ -114,7 +114,7 @@ module.exports.loop = function () {
     if(upgraders < 3) {
         var newName = 'Upgrader_' + HOME + '_' + Game.time;
         //console.log('Spawning new upgrader: ' + newName);
-        Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,MOVE], newName, 
+        Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE,MOVE], newName, 
             {memory: {role: 'upgrader',home: HOME}});
     }
     
@@ -141,10 +141,10 @@ module.exports.loop = function () {
             {memory: {role: 'importHarvester1',home: HOME,target: 'E55S3'}});
     }
     
-    if(builders < 1) {
+    if(builders < 2) {
         var newName = 'Builder_' + HOME + '_' + Game.time;
         //console.log('Spawning new builder: ' + newName);
-        Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,MOVE], newName, 
+        Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE,MOVE], newName, 
             {memory: {role: 'builder',home: HOME}});
     }
     
