@@ -104,7 +104,7 @@ module.exports.loop = function () {
             {memory: {role: 'harvester0',home: HOME}});
     }
     
-    if(transporters < 0) {
+    if(transporters < 1) {
         var newName = 'Transporter_' + HOME + '_' +  Game.time;
         //console.log('Spawning new harvester: ' + newName);
         Game.spawns[Spawn1].spawnCreep([CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
@@ -118,10 +118,10 @@ module.exports.loop = function () {
             {memory: {role: 'upgrader',home: HOME}});
     }
     
-    if(repairers < 0) {
+    if(repairers < 1) {
         var newName = 'Repairer_' + HOME + '_' + Game.time;
         //console.log('Spawning new repairer: ' + newName);
-        Game.spawns[Spawn1].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], newName, 
+        Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, 
             {memory: {role: 'repairer',home: HOME}});
     }
     if(repairersWall < 0) {

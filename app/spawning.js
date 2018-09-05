@@ -8,7 +8,7 @@
  */
 
 module.exports = {
-    spawn: function() {
+    spawn_main: function(spawn1, spawn2, superspawn, controller_level) {
         
     }
 };

@@ -11,7 +11,7 @@ module.exports = {
         }
 
         if (creep.memory.working == true) {
-            var structure = creep.room.find(FIND_STRUCTURES, {filter: (s) => s.hits < (s.hitsMax-400) && (s.structureType == STRUCTURE_CONTAINER || s.structureType == STRUCTURE_TOWER)});
+            var structure = creep.room.find(FIND_STRUCTURES, {filter: (s) => s.hits < (s.hitsMax-400) && (s.structureType == STRUCTURE_CONTAINER || s.structureType == STRUCTURE_TOWER || s.structureType == STRUCTURE_ROAD)});
             var weakest = structure[0];
             /*for(var i = 1; i<structure.length;i++) {
                 if(weakest.hits > structure[i].hits) {
@@ -30,7 +30,7 @@ module.exports = {
         }  else {
             var targets = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_STORAGE) &&
+                    return (structure.structureType == /*STRUCTURE_STORAGE*/ STRUCTURE_CONTAINER) &&
                         structure.store[RESOURCE_ENERGY] >= creep.carryCapacity;
                     }
                });
