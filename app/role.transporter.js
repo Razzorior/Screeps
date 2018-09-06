@@ -28,10 +28,10 @@ module.exports = {
                     }
                 });
                 if(storages.length > 0) {
-                if(creep.transfer(storages[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(storages[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                }
-            } 
+                    if(creep.transfer(storages[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(storages[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                    }
+                } 
             }
 	    } else {
 	        var targets = creep.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -52,10 +52,10 @@ module.exports = {
                     }
                 });
                 if(storages.length > 0) {
-                if(creep.withdraw(storages[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(storages[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                }
-            } 
+                    if(creep.withdraw(storages[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(storages[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                    }
+                } 
             }
 	    }
 	    

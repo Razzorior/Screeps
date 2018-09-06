@@ -33,6 +33,20 @@ module.exports.loop = function () {
         var room = Game.rooms[room_name]
         var creeps = {};
         var i = 0;
+        // Since the controller is reaching level 4 over night, this construction plan
+        // triggers automatically. 
+        if (Memory.buildmemory == false && room.controller.level == 4) {
+            room.createConstructionSite(23,23,STRUCTURE_STORAGE);
+            room.createConstructionSite(22,24,STRUCTURE_ROAD);
+            room.createConstructionSite(23,24,STRUCTURE_ROAD);
+            room.createConstructionSite(24,24,STRUCTURE_ROAD);
+            room.createConstructionSite(22,23,STRUCTURE_ROAD);
+            room.createConstructionSite(24,23,STRUCTURE_ROAD);
+            room.createConstructionSite(22,22,STRUCTURE_ROAD);
+            room.createConstructionSite(23,22,STRUCTURE_ROAD);
+            room.createConstructionSite(24,22,STRUCTURE_ROAD);
+            Memory.buildmemory = true;
+        }
         for (var name in Game.creeps) {
             if(Game.creeps[name].memory.home == room.name) {
                 creeps[i] = Game.creeps[name];
@@ -161,7 +175,7 @@ module.exports.loop = function () {
             roleHarvester.run(creep);
         }
         if(creep.memory.role == 'harvester0') {
-            roleHarvester0.run(creep);
+            roleHarvester.run(creep);
         }
         if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
