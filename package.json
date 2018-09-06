@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Razzorior/Screeps/issues"
   },
-  "homepage": "https://github.com/Razzorior/Screeps#readme"
+  "homepage": "https://github.com/Razzorior/Screeps#readme",
+  "dependencies": {
+    "typescript": "^3.0.3"
+  }
 }
