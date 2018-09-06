@@ -1,0 +1,43 @@
+Ideen:
+----------------------
+Automatische Erkennung des Controllerlevels des Raums 
+und anhand dessen eine angepasste KI (koennte ne Weile dauern. ^^)
+----------------------
+Neuer Spawning Algorithmus (aus der main auslagern)
+
+Koennte beinhalten:
+
+Erkennung von baldigem Tod der Creeps, sodass diese
+im Vorraus produziert werden und rechtzeitig an ihrem benötigten Ort sind.
+
+Intelligentes queuen von mehreren Spawn Auftraegen gleichzeitig. (Prioritaeten)
+
+Unabhaengig vom Raum (indem Raumname und Controllerlevel mitgegeben wird.)
+----------------------
+Upgrader:
+
+Koennen gleichzeitig laufen und upgraden -->
+ausnutzen, sodass sie neu ankommenden Upgradern Platz machen, waehrenddessen
+sie weiterhin upgraden.
+----------------------
+Turm:
+
+aus der Main auslagern und intelligenteres Zielsuchen (ausser einfach den nähsten
+Gegner anzugreifen). Macht zwar mehr Schaden bei naeheren Gegnern, jedoch kann diese 
+Ueberlistet werden. (Heiler anvisieren und notfalls nicht schiessen, damit Energiehaushalt 
+nicht zerstoert wird).
+----------------------
+Automatischer Strassenbau 
+(haufige Pfade? Sumpfpfade beachten, diese werden normalerweise nicht
+ausgewaehlt, aber mit strassen koennten sie deutlich schneller sein, weil dann der Malus wegfaellt)
+----------------------
+Neue Klassen:
+
+- Verteidiger (meele)
+- Verteidiger (ranged)
+--> Werden (falls genug Energie und wichtigen Spawns anstehen) produziert, sobald man 
+angegriffen wird, und der Turmschaden nicht ausreicht, um das Dorf mit allen Mitteln zu verteidigen.
+
+- Heiler (Logik für eine Heilerklasse implementieren)
+--> Heilt (geschwaechtesten?) Soldat, und versucht moeglichst viele Einheiten moeglichst lange am Leben zu halten.
+----------------------
