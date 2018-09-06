@@ -1,0 +1,26 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "commonjs",
+        "rootDir": "src",
+        "outDir": "dist",
+        "target": "es5",
+        "allowJs": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+    },
+    "include": [
+        "src/**/*",
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts",
+    ],
+    "files": [
+        "types.ts",
+    ],
+}
