@@ -1,4 +1,5 @@
 import { CustomCreepMemory } from "./custom-creep-memory";
+import { RoomFinder } from "./room-finder";
 
 export class RolePatrol {
     public static run(creep: Creep) {
@@ -15,8 +16,7 @@ export class RolePatrol {
             }
         }
         else {
-            var exit = creep.room.findExitTo((creep.memory as CustomCreepMemory).target);
-            creep.moveTo(creep.pos.findClosestByRange(exit));
+            RoomFinder.moveToNextRoom(creep, (creep.memory as CustomCreepMemory).target);
         }
     }
 }

@@ -1,4 +1,5 @@
 import { CustomCreepMemory } from "./custom-creep-memory";
+import { RoomFinder } from "./room-finder";
 
 export class RoleImportHarvester {
     public static run(creep: Creep) {
@@ -26,8 +27,7 @@ export class RoleImportHarvester {
                 }
             }
             else {
-                var exit = creep.room.findExitTo((creep.memory as CustomCreepMemory).home);
-                creep.moveTo(creep.pos.findClosestByRange(exit));
+                RoomFinder.moveToNextRoom(creep, (creep.memory as CustomCreepMemory).target);
             }
         }
         else {
@@ -40,8 +40,7 @@ export class RoleImportHarvester {
                 }
             }
             else {
-                var exit = creep.room.findExitTo((creep.memory as CustomCreepMemory).target);
-                creep.moveTo(creep.pos.findClosestByRange(exit));
+                RoomFinder.moveToNextRoom(creep, (creep.memory as CustomCreepMemory).target);
             }
         }
     }

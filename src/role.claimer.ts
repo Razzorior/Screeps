@@ -1,4 +1,5 @@
 import { CustomCreepMemory } from "./custom-creep-memory";
+import { RoomFinder } from "./room-finder";
 
 export class RoleClaimer {
     public static run(creep: Creep) {
@@ -16,8 +17,7 @@ export class RoleClaimer {
         }
         else {
             const exit: ExitConstant | ERR_NO_PATH | ERR_INVALID_ARGS = creep.room.findExitTo((creep.memory as CustomCreepMemory).target);
-            // TODO find solution
-            creep.moveTo(creep.pos.findClosestByRange(exit));
+            RoomFinder.moveToNextRoom(creep, (creep.memory as CustomCreepMemory).target);
         }
     }
 
