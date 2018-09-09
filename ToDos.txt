@@ -1,3 +1,7 @@
+Moegliche Quellen:
+https://github.com/bonzaiferroni/bonzAI/wiki/The-Zombie-Invasion
+--> Interessante Ansaetze fuer eine Angriffstrategie, jedoch manches ein wenig veraltet (er greift scheinbar mit WORK Komponenten an??)
+
 Ideen:
 ----------------------
 Automatische Erkennung des Controllerlevels des Raums   --> Erkennung schon implementiert. (siehe spawning.js)

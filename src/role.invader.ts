@@ -17,23 +17,42 @@ export class RoleInvader {
                 }
             });
 
+            var extensions = creep.room.find(FIND_HOSTILE_STRUCTURES, {
+                filter: (extensions) => {
+                    return (extensions.structureType == STRUCTURE_EXTENSION)
+                }
+            });
+
             if (towers.length > 0) {
                 if (creep.attack(towers[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(towers[0], { swampCost: 0 } as MoveToOpts);
+                    creep.moveTo(towers[0], { maxRooms: 1 } as MoveToOpts);
                 }
             } else if (spawners.length > 0) {
                 if (creep.attack(spawners[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(spawners[0]);
+                    creep.moveTo(spawners[0], { maxRooms: 1} as MoveToOpts);
                 }
-            } else {
+            } else if (extensions.length > 0) {
+                if (creep.attack(extensions[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(extensions[0], { maxRooms: 1} as MoveToOpts);
+                }
+            }
+            else {
                 var enemy = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
                 if (enemy != undefined) {
                     if (creep.attack(enemy) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(enemy);
+                        creep.moveTo(enemy, {maxRooms: 1} as MoveToOpts);
                     }
                 } else {
-                    creep.moveTo(17, 34);
-                    creep.say('Beware!', true);
+                    var plannedBuildings = creep.room.find(FIND_HOSTILE_CONSTRUCTION_SITES);
+                    if(plannedBuildings.length > 0) {
+                        if(creep.pos != plannedBuildings[0].pos) {
+                            creep.moveTo(plannedBuildings[0].pos, {maxRooms: 1, stroke: '#ffffff'} as MoveToOpts);
+                        }
+                    } else {
+                        creep.moveTo(17, 34, {maxRooms: 1} as MoveToOpts);
+                        creep.say('Beware!', true);
+                    }
+                    
                 }
             }
         }

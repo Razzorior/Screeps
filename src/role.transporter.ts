@@ -20,7 +20,7 @@ export class RoleTransporter {
             });
             if (targets != undefined) {
                 if (creep.transfer(targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets, { visualizePathStyle: { stroke: '#ffffff' } });
+                    creep.moveTo(targets, { ignoreCreeps: true, visualizePathStyle: { stroke: '#ffffff' } });
                 }
             } else {
                 var storages = creep.room.find(FIND_STRUCTURES, {
@@ -31,7 +31,7 @@ export class RoleTransporter {
                 });
                 if (storages.length > 0) {
                     if (creep.transfer(storages[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(storages[0], { visualizePathStyle: { stroke: '#ffffff' } });
+                        creep.moveTo(storages[0], { ignoreCreeps: true, visualizePathStyle: { stroke: '#ffffff' } });
                     }
                 }
             }
@@ -44,7 +44,7 @@ export class RoleTransporter {
             });
             if (targets != undefined) {
                 if (creep.withdraw(targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets, { visualizePathStyle: { stroke: '#ffffff' } });
+                    creep.moveTo(targets, { ignoreCreeps: true, visualizePathStyle: { stroke: '#ffffff' } });
                 }
             } else {
                 var storages = creep.room.find(FIND_STRUCTURES, {
@@ -55,7 +55,7 @@ export class RoleTransporter {
                 });
                 if (storages.length > 0) {
                     if (creep.withdraw(storages[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(storages[0], { visualizePathStyle: { stroke: '#ffffff' } });
+                        creep.moveTo(storages[0], { ignoreCreeps: true, visualizePathStyle: { stroke: '#ffffff' } });
                     }
                 }
             }

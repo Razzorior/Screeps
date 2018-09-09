@@ -3,7 +3,7 @@ import { CustomCreepMemory } from "./custom-creep-memory";
 export class RoleHarvester {
     public static run(creep: Creep) {
         if (creep.pos.x != (creep.memory as CustomCreepMemory).dest.x || creep.pos.y != (creep.memory as CustomCreepMemory).dest.y) {
-            creep.moveTo((creep.memory as CustomCreepMemory).dest.x, (creep.memory as CustomCreepMemory).dest.y);
+            creep.moveTo((creep.memory as CustomCreepMemory).dest.x, (creep.memory as CustomCreepMemory).dest.y, {ignoreCreeps: true});
 
         } else {
             var sources = creep.room.find(FIND_SOURCES);

@@ -23,7 +23,6 @@ export class Spawning {
 
         if (spawners.length > 0) {
             Spawn1 = spawners[0].name;
-            console.log('I was here');
             if (spawners.length > 1) { Spawn2 = spawners[1].name; }
 
             var HOME = room.name;
@@ -101,7 +100,7 @@ export class Spawning {
                     }
                     if (upgraders < 3) {
                         var newName = 'Upgrader_' + HOME + '_' + Game.time;
-                        Game.spawns[Spawn1].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE, MOVE], newName,
+                        Game.spawns[Spawn1].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], newName,
                             { memory: { role: 'upgrader', home: HOME } });
                     }
                     if (repairers < 1) {
@@ -154,7 +153,7 @@ export class Spawning {
                     }
                     if (repairers < 1) {
                         var newName = 'Repairer_' + HOME + '_' + Game.time;
-                        Game.spawns[Spawn1].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], newName,
+                        Game.spawns[Spawn1].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], newName,
                             { memory: { role: 'repairer', home: HOME } });
                     }
                     if (builders < 2) {
@@ -162,7 +161,7 @@ export class Spawning {
                         Game.spawns[Spawn1].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE, MOVE], newName,
                             { memory: { role: 'builder', home: HOME } });
                     }
-                    if (repairersWall < 1) {
+                    if (repairersWall < 2) {
                         var newName = 'WallRepairer_' + HOME + '_' + Game.time;
                         Game.spawns[Spawn1].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], newName,
                             { memory: { role: 'repairerWall', home: HOME } });
@@ -174,6 +173,62 @@ export class Spawning {
                     }
                     break;
                 case 5:
+                    var containers: StructureContainer[] = room.find(FIND_STRUCTURES, {
+                        filter: (structure) => {
+                            return (structure.structureType == STRUCTURE_CONTAINER)
+                        }
+                    }).map(entry => entry as StructureContainer);
+                    if (containers.length > 0) {
+                        var pos1 = containers[0].pos;
+                        if (harvesters < 1) {
+                            var newName = 'Harvester_' + HOME + '_' + Game.time;
+                            Game.spawns[Spawn1].spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
+                                { memory: { role: 'harvester', home: HOME, dest: pos1 } });
+                        }
+                        if (containers.length > 1) {
+                            var pos2 = containers[1].pos;
+                            if (harvesters0 < 1) {
+                                var newName = 'Harvester_' + HOME + '_' + Game.time;
+                                Game.spawns[Spawn1].spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
+                                    { memory: { role: 'harvester0', home: HOME, dest: pos2 } });
+                            }
+                        }
+                    }
+                    if (transporters < 2) {
+                        var newName = 'Transporter_' + HOME + '_' + Game.time;
+                        Game.spawns[Spawn1].spawnCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE], newName,
+                            { memory: { role: 'transporter', home: HOME } });
+                    }
+                    if (upgraders < 3) {
+                        var newName = 'Upgrader_' + HOME + '_' + Game.time;
+                        Game.spawns[Spawn1].spawnCreep([WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], newName,
+                            { memory: { role: 'upgrader', home: HOME } });
+                    }
+                    if (repairers < 1) {
+                        var newName = 'Repairer_' + HOME + '_' + Game.time;
+                        Game.spawns[Spawn1].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], newName,
+                            { memory: { role: 'repairer', home: HOME } });
+                    }
+                    if (builders < 2) {
+                        var newName = 'Builder_' + HOME + '_' + Game.time;
+                        Game.spawns[Spawn1].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE, MOVE], newName,
+                            { memory: { role: 'builder', home: HOME } });
+                    }
+                    if (repairersWall < 2) {
+                        var newName = 'WallRepairer_' + HOME + '_' + Game.time;
+                        Game.spawns[Spawn1].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], newName,
+                            { memory: { role: 'repairerWall', home: HOME } });
+                    }
+                    if (invaders < 0) {
+                        var newName = 'HelloKitty_' + HOME + '_' + Game.time;
+                        Game.spawns[Spawn1].spawnCreep([TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, MOVE, ATTACK, MOVE, ATTACK, MOVE, ATTACK, MOVE, ATTACK, MOVE], newName,
+                            { memory: { role: 'invader', home: HOME, target: 'W58N58' } });
+                    }
+                    if(claimers < 0){
+                        var newName = "Claimer_" + HOME + '_' + Game.time;
+                        Game.spawns[Spawn1].spawnCreep([CLAIM,CLAIM,MOVE,MOVE], newName,
+                            {memory: {role: 'claimer',home: HOME,target: 'E55S3'}}); // target should be determined in somewhere else
+                    }
                     break;
                 case 6:
                     break;
@@ -193,4 +248,6 @@ export class Spawning {
             }
         }
     }
+
+    // implement spawnbuilders for all classes here.
 }
