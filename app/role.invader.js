@@ -16,7 +16,7 @@ module.exports = {
 
             if(towers.length > 0) {
                 if(creep.attack(towers[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(towers[0]);
+                    creep.moveTo(towers[0], {swampCost: 0});
                 }
             } else if (spawners.length > 0) {
                 if(creep.attack(spawners[0]) == ERR_NOT_IN_RANGE) {
