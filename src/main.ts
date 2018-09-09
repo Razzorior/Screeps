@@ -13,6 +13,8 @@ import { RoleReserver } from './role.reserver';
 import { RoleClaimer } from './role.claimer';
 import { RoleHarvesterNotfall } from './role.harvesterNotfall';
 import { RoleInvader } from './role.invader';
+import { BenefitEquation } from './optimizationfunctions/benefit-equation';
+import { HarvestAndCarryStrategy } from './optimizationfunctions/strategy/harvest-carry';
 
 export function loop() {
     // Checks if all creeps in the memory are still alive
@@ -29,15 +31,21 @@ export function loop() {
     // In that case a nother condition is needed here.
     for (var room_name in Game.rooms) {
         var room = Game.rooms[room_name]
-        var creeps: { [creepName: string]: Creep; } = {};
         var i = 0;
         for (var name in Game.creeps) {
             if ((Game.creeps[name].memory as CustomCreepMemory).home == room.name) {
-                creeps[i] = Game.creeps[name];
                 i++;
             }
         }
-        Spawning.spawn_main(room, creeps);
+        Spawning.spawn_main(room, Game.creeps);
+
+        // output benefit calculation
+        const source: Source = room.find(FIND_SOURCES)[0];
+        const spawn: StructureSpawn = Game.spawns["Spawn1"];
+        for (var name in Game.creeps) {
+            const benefit = BenefitEquation.calculateBenefit(HarvestAndCarryStrategy.simulateAction(creep, source, spawn));
+            console.log(JSON.stringify(benefit));
+        }
 
         //Simple Tower AI.
         var towers: StructureTower[] = room.find(FIND_STRUCTURES, {

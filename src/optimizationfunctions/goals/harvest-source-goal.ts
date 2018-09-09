@@ -1,7 +1,7 @@
 import { Goal } from "./goal";
 import { ActionResult } from "../actions/action-result";
 
-export class HarvestMineralGoal extends Goal {
+export class HarvestSourceGoal extends Goal {
 
     public static simulateAction(workParts: number, carryCapacity: number, mineralAmount: number): { result: ActionResult, obtainedEnergy: number } {
         if (workParts == 0) {
