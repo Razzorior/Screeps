@@ -47,6 +47,7 @@ module.exports = {
     var reservers = 0;
     var claimers = 0;
     var harvesterNotfall = 0;
+    var invaders = 0;
         for(var name in creeps) {
             var creep = creeps[name];
             if(creep.memory.role=='harvester') { harvesters++; }
@@ -62,6 +63,7 @@ module.exports = {
             if(creep.memory.role=='reserver'){ reservers++; }
             if(creep.memory.role=='claimer'){ claimers++; }
             if(creep.memory.role=='harvesterNotfall') {harvesterNotfall++; }
+            if(creep.memory.role=='invader') {invaders++; }
         }
 
         // The case that no spawner exists must be checked. (you can own a controller without having a spawner)
@@ -169,6 +171,11 @@ module.exports = {
                     var newName = 'WallRepairer_' + HOME + '_' + Game.time;
                     Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], newName, 
                         {memory: {role: 'repairerWall',home: HOME}});
+                }
+                if(invaders < 2) { 
+                    var newName = 'HelloKitty_' + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,MOVE,ATTACK,MOVE,ATTACK,MOVE,ATTACK,MOVE,ATTACK,MOVE], newName, 
+                        {memory: {role: 'invader',home: HOME,target: 'W58N58'}});
                 }
                 break;
             case 5:

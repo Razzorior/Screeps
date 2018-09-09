@@ -32,7 +32,7 @@ module.exports = {
                 for(var i = 1; i<structure.length;i++) {
                     if(weakest.hits > (structure[i].hits)) {
                         weakest = structure[i];
-                    }
+                    }   
                 }
                 creep.memory.destination = weakest.id;
                 creep.memory.foundTarget = true;
