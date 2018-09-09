@@ -5,11 +5,11 @@ var process = require("process");
 // const appFolder = '.\\app';
 const appFolder = '.\\dist';
 
-module.exports = {
-    getSources: function () {
+export class AppFiles {
+    public static getSources() {
         const result = {};
         // const files = fs.readdirSync(appFolder);
-        const files = this.getFilesRecursive(appFolder);
+        const files = AppFiles.getFilesRecursive(appFolder);
         files.forEach(function (file, index) {
             file
             const fileWithoutJs = file.replace('.js', '');
@@ -17,15 +17,15 @@ module.exports = {
             result[fileWithoutJs] = fs.readFileSync(filePath, 'utf8');
         });
         return result;
-    },
-    getFilesRecursive: function (fileOrFolder) {
-        var self = this;
+    }
+
+    private static getFilesRecursive(fileOrFolder): string[] {
         var result = [];
         fs.stat(fileOrFolder, function (err, stat) {
             if (stat && stat.isDirectory()) {
                 fs.readdirSync(fileOrFolder).forEach(function (subItem) {
                     result = result.concat(
-                        self.getFilesRecursive(subItem));
+                        AppFiles.getFilesRecursive(subItem));
                 });
             } else {
                 result.push(fileOrFolder);

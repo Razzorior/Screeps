@@ -14,13 +14,9 @@
     },
     "include": [
         "src/**/*",
-        //"app/**/*",
     ],
     "exclude": [
         "node_modules",
         "**/*.spec.ts",
     ],
-    //"files": [
-    //    "src/types.ts",
-    //],
 }
