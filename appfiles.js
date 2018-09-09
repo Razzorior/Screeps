@@ -23,7 +23,7 @@ module.exports = {
         var result = [];
         fs.stat(fileOrFolder, function (err, stat) {
             if (stat && stat.isDirectory()) {
-                fs.readdirSync(fileOrFolder).forEach(function (subItem) {
+                fs.readdirSync(fileOrFolder).forEach(function (subItem, index) {
                     result = result.concat(
                         self.getFilesRecursive(subItem));
                 });
