@@ -165,6 +165,11 @@ module.exports = {
                     Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE,MOVE], newName, 
                         {memory: {role: 'builder',home: HOME}});
                 }
+                if(repairersWall < 1) {
+                    var newName = 'WallRepairer_' + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], newName, 
+                        {memory: {role: 'repairerWall',home: HOME}});
+                }
                 break;
             case 5:
                 break;
