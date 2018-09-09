@@ -1,5 +1,6 @@
 import { Spawning } from './spawning';
 import { CustomCreepMemory } from './custom-creep-memory';
+import { RoleHarvester } from './role.harvester';
 
 export function loop() {
     // Checks if all creeps in the memory are still alive
@@ -45,6 +46,141 @@ export function loop() {
                     }
                 }
             }
+        }
+    }
+
+
+    // keeping this code just in case the spawning.js is buggy, can be deleted soon.
+    /*
+        if(harvesters < 1) {
+            var newName = 'Harvester_' + HOME + '_' +  Game.time;
+            //console.log('Spawning new harvester: ' + newName);
+            Game.spawns[Spawn1].spawnCreep([WORK,WORK,WORK,WORK,WORK,MOVE], newName, 
+                {memory: {role: 'harvester',home: HOME}});
+        }
+        
+        if(harvesters0 < 0) {
+            var newName = 'Harvester_' + HOME + '_' +  Game.time;
+            //console.log('Spawning new harvester: ' + newName);
+            Game.spawns[Spawn1].spawnCreep([WORK,WORK,WORK,WORK,WORK,MOVE], newName, 
+                {memory: {role: 'harvester0',home: HOME}});
+        }
+        
+        if(transporters < 1) {
+            var newName = 'Transporter_' + HOME + '_' +  Game.time;
+            //console.log('Spawning new harvester: ' + newName);
+            Game.spawns[Spawn1].spawnCreep([CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
+                {memory: {role: 'transporter',home: HOME}});
+        }
+        
+        if(upgraders < 3) {
+            var newName = 'Upgrader_' + HOME + '_' + Game.time;
+            //console.log('Spawning new upgrader: ' + newName);
+            Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE,MOVE], newName, 
+                {memory: {role: 'upgrader',home: HOME}});
+        }
+        
+        if(repairers < 1) {
+            var newName = 'Repairer_' + HOME + '_' + Game.time;
+            //console.log('Spawning new repairer: ' + newName);
+            Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, 
+                {memory: {role: 'repairer',home: HOME}});
+        }
+        if(repairersWall < 0) {
+            var newName = 'WallRepairer_' + HOME + '_' + Game.time;
+            //console.log('Spawning new repairer: ' + newName);
+            Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], newName, 
+                {memory: {role: 'repairerWall',home: HOME}});
+        }
+        if(importHarvesters < 0) {
+            var newName = 'ImportHarvester_' + HOME + '_' + Game.time;
+            Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], newName, 
+                {memory: {role: 'importHarvester',home: HOME,target: 'E56S2'}});
+        }
+        if(importHarvesters1 < 0) {
+            var newName = 'ImportHarvester1_' + HOME + '_' + Game.time;
+            Game.spawns[Spawn1].spawnCreep([WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], newName, 
+                {memory: {role: 'importHarvester1',home: HOME,target: 'E55S3'}});
+        }
+        
+        if(builders < 2) {
+            var newName = 'Builder_' + HOME + '_' + Game.time;
+            //console.log('Spawning new builder: ' + newName);
+            Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE,MOVE], newName, 
+                {memory: {role: 'builder',home: HOME}});
+        }
+        
+        if(patrols < 0) {
+            var newName = 'Patrol_' + HOME + '_' + Game.time;
+            //console.log('Spawning new patrol: ' + newName);
+            Game.spawns[Spawn1].spawnCreep([TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK,ATTACK,ATTACK,ATTACK,MOVE], newName, 
+                {memory: {role: 'patrol',target: 'E56S2',home: HOME}});
+        }
+        if(reservers < 0){
+            var newName = "Reserver_" + HOME + '_' + Game.time;
+            Game.spawns[Spawn1].spawnCreep([CLAIM,CLAIM,MOVE,MOVE], newName,
+                {memory: {role: 'reserver',home: HOME,target: 'E56S2'}});
+        }
+        if(claimers < 0){
+            var newName = "Claimer_" + HOME + '_' + Game.time;
+            Game.spawns[Spawn1].spawnCreep([CLAIM,CLAIM,MOVE,MOVE], newName,
+                {memory: {role: 'claimer',home: HOME,target: 'E55S3'}});
+        }
+        if(harvesterNotfall < 3){
+            var newName = "Harvester_" + HOME + '_' + Game.time;
+            Game.spawns[Spawn1].spawnCreep([CARRY,CARRY,WORK,MOVE], newName,
+                {memory: {role: 'harvesterNotfall',home: HOME}});
+        }
+        
+        if(Game.spawns[Spawn1].spawning) { 
+            var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
+            Game.spawns[Spawn1].room.visual.text(
+                '🛠️' + spawningCreep.memory.role,
+                Game.spawns[Spawn1].pos.x-2, 
+                Game.spawns[Spawn1].pos.y+1, 
+                {align: 'top', opacity: 0.8});
+        }
+    */
+    for (var name in Game.creeps) {
+        var creep = Game.creeps[name];
+        if ((creep.memory as CustomCreepMemory).role == 'harvester') {
+            RoleHarvester.run(creep);
+        }
+        if ((creep.memory as CustomCreepMemory).role == 'harvester0') {
+            RoleHarvester.run(creep);
+        }
+        if ((creep.memory as CustomCreepMemory).role == 'upgrader') {
+            RoleUpgrader.run(creep);
+        }
+        if ((creep.memory as CustomCreepMemory).role == 'builder') {
+            RoleBuilder.run(creep);
+        }
+        if ((creep.memory as CustomCreepMemory).role == 'repairer') {
+            RoleRepairer.run(creep);
+        }
+        if ((creep.memory as CustomCreepMemory).role == 'repairerWall') {
+            RoleRepairerWall.run(creep);
+        }
+        if ((creep.memory as CustomCreepMemory).role == 'transporter') {
+            roleTransporter.run(creep);
+        }
+        if ((creep.memory as CustomCreepMemory).role == 'importHarvester') {
+            roleImportHarvester.run(creep);
+        }
+        if ((creep.memory as CustomCreepMemory).role == 'importHarvester1') {
+            roleStartUpBuilder.run(creep);
+        }
+        if ((creep.memory as CustomCreepMemory).role == 'patrol') {
+            rolePatrol.run(creep);
+        }
+        if ((creep.memory as CustomCreepMemory).role == 'reserver') {
+            roleReserver.run(creep);
+        }
+        if ((creep.memory as CustomCreepMemory).role == 'claimer') {
+            roleClaimer.run(creep);
+        }
+        if ((creep.memory as CustomCreepMemory).role == 'harvesterNotfall') {
+            roleHarvesterNotfall.run(creep);
         }
     }
 }

@@ -4,4 +4,9 @@ export interface CustomCreepMemory extends CreepMemory {
 
     role: string;
 
-} 
+    dest: RoomPosition;
+
+}
+function extend<CreepMemory>(obj: CreepMemory): string {
+    return obj as CustomCreepMemory;
+}
