@@ -44,6 +44,7 @@ export class Spawning {
         var reservers = 0;
         var claimers = 0;
         var harvesterNotfall = 0;
+        var invaders = 0;
         for (var name in creeps) {
             var creep = creeps[name];
             if ((creep.memory as CustomCreepMemory).role == 'harvester') { harvesters++; }
@@ -59,19 +60,41 @@ export class Spawning {
             if ((creep.memory as CustomCreepMemory).role == 'reserver') { reservers++; }
             if ((creep.memory as CustomCreepMemory).role == 'claimer') { claimers++; }
             if ((creep.memory as CustomCreepMemory).role == 'harvesterNotfall') { harvesterNotfall++; }
+            if ((creep.memory as CustomCreepMemory).role == 'invader') { invaders++; }
         }
 
         // The case that no spawner exists must be checked. (you can own a controller without having a spawner)
         switch (room.controller.level) {
             case 1:
+                if (harvesterNotfall < 3) {
+                    var newName = "Harvester_" + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([CARRY, CARRY, WORK, MOVE], newName,
+                        { memory: { role: 'harvesterNotfall', home: HOME } });
+                }
                 break;
             case 2:
                 break;
             case 3:
-                if (harvesters < 1) {
-                    var newName = 'Harvester_' + HOME + '_' + Game.time;
-                    Game.spawns[Spawn1].spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
-                        { memory: { role: 'harvester', home: HOME } });
+                var containers: StructureContainer[] = room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_CONTAINER)
+                    }
+                }).map(entry => entry as StructureContainer);
+                if (containers.length > 0) {
+                    var pos1 = containers[0].pos;
+                    if (harvesters < 1) {
+                        var newName = 'Harvester_' + HOME + '_' + Game.time;
+                        Game.spawns[Spawn1].spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
+                            { memory: { role: 'harvester', home: HOME, dest: pos1 } });
+                    }
+                    if (containers.length > 1) {
+                        var pos2 = containers[1].pos;
+                        if (harvesters0 < 1) {
+                            var newName = 'Harvester_' + HOME + '_' + Game.time;
+                            Game.spawns[Spawn1].spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
+                                { memory: { role: 'harvester0', home: HOME, dest: pos2 } });
+                        }
+                    }
                 }
                 if (transporters < 1) {
                     var newName = 'Transporter_' + HOME + '_' + Game.time;
@@ -100,6 +123,57 @@ export class Spawning {
                 }
                 break;
             case 4:
+                var containers: StructureContainer[] = room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_CONTAINER)
+                    }
+                }).map(entry => entry as StructureContainer);
+                if (containers.length > 0) {
+                    var pos1 = containers[0].pos;
+                    if (harvesters < 1) {
+                        var newName = 'Harvester_' + HOME + '_' + Game.time;
+                        Game.spawns[Spawn1].spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
+                            { memory: { role: 'harvester', home: HOME, dest: pos1 } });
+                    }
+                    if (containers.length > 1) {
+                        var pos2 = containers[1].pos;
+                        if (harvesters0 < 1) {
+                            var newName = 'Harvester_' + HOME + '_' + Game.time;
+                            Game.spawns[Spawn1].spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
+                                { memory: { role: 'harvester0', home: HOME, dest: pos2 } });
+                        }
+                    }
+                }
+                if (transporters < 2) {
+                    var newName = 'Transporter_' + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE], newName,
+                        { memory: { role: 'transporter', home: HOME } });
+                }
+                if (upgraders < 3) {
+                    var newName = 'Upgrader_' + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], newName,
+                        { memory: { role: 'upgrader', home: HOME } });
+                }
+                if (repairers < 1) {
+                    var newName = 'Repairer_' + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], newName,
+                        { memory: { role: 'repairer', home: HOME } });
+                }
+                if (builders < 2) {
+                    var newName = 'Builder_' + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE, MOVE], newName,
+                        { memory: { role: 'builder', home: HOME } });
+                }
+                if (repairersWall < 1) {
+                    var newName = 'WallRepairer_' + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], newName,
+                        { memory: { role: 'repairerWall', home: HOME } });
+                }
+                if (invaders < 2) {
+                    var newName = 'HelloKitty_' + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, MOVE, ATTACK, MOVE, ATTACK, MOVE, ATTACK, MOVE, ATTACK, MOVE], newName,
+                        { memory: { role: 'invader', home: HOME, target: 'W58N58' } });
+                }
                 break;
             case 5:
                 break;

@@ -182,5 +182,8 @@ export function loop() {
         if ((creep.memory as CustomCreepMemory).role == 'harvesterNotfall') {
             roleHarvesterNotfall.run(creep);
         }
+        if ((creep.memory as CustomCreepMemory).role == 'invader') {
+            roleInvader.run(creep);
+        }
     }
 }
