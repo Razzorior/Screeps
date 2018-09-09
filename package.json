@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Razzorior/Screeps#readme",
   "dependencies": {
+    "@types/screeps": "^2.4.1",
     "typescript": "^3.0.3"
   }
 }
