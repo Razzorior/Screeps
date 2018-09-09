@@ -2,7 +2,6 @@
     "compileOnSave": true,
     "compilerOptions": {
         "module": "commonjs",
-        "rootDir": "src",
         "outDir": "dist",
         "target": "es5",
         "allowJs": true,
@@ -14,13 +13,14 @@
         "sourceMap": false,
     },
     "include": [
-        "src/**/*",
+        //"src/**/*",
+        "app/**/*",
     ],
     "exclude": [
         "node_modules",
         "**/*.spec.ts",
     ],
-    "files": [
-        "src/types.ts",
-    ],
+    //"files": [
+    //    "src/types.ts",
+    //],
 }
