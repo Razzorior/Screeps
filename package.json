@@ -4,7 +4,7 @@
   "description": "Screeps of Razzorior",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "push": "node push.js"
   },
   "repository": {
@@ -22,6 +22,7 @@
     "typescript": "^3.0.3"
   },
   "devDependencies": {
+    "jasmine": "^3.2.0",
     "karma": "^3.0.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-typescript": "^3.0.13"

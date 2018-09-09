@@ -1,6 +1,6 @@
 module.exports = function (config) {
     config.set({
-        frameworks: ["karma-typescript"],
+        frameworks: ["jasmine", "karma-typescript"],
         files: [
             "src/**/*.ts" // *.tsx for React Jsx
         ],
