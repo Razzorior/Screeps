@@ -6,4 +6,6 @@ export interface CustomCreepMemory extends CreepMemory {
 
     dest: RoomPosition;
 
+    building: boolean;
+
 }
