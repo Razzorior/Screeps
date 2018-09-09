@@ -3,6 +3,8 @@ var roleBuilder = require('role.builder');
 
 module.exports = {
     run: function(creep) {
+        const hpUntilRetarget = 20000;
+
         if (creep.memory.working == true && creep.carry.energy == 0) {
             creep.memory.working = false;
         }
@@ -11,6 +13,19 @@ module.exports = {
         }
 
         if (creep.memory.working == true) {
+            var ramparts = creep.room.find(FIND_STRUCTURES, {
+                filter: (ramparts) => {
+                    return (ramparts.structureType == STRUCTURE_RAMPART) &&
+                    ramparts.hits == 1;
+                }
+           });
+
+           if(ramparts.length > 0) {
+                creep.memory.destination = ramparts[0].id;
+                creep.memory.targetHP = 1;
+                creep.memory.foundTarget = true;
+           } 
+
             if(!creep.memory.foundTarget) {
                 var structure = creep.room.find(FIND_STRUCTURES, {filter: (s) => s.hits < s.hitsMax && (s.structureType == STRUCTURE_WALL || s.structureType == STRUCTURE_RAMPART)});
                 var weakest = structure[0];
@@ -23,7 +38,7 @@ module.exports = {
                 creep.memory.foundTarget = true;
                 creep.memory.targetHP = weakest.hits;
             } else {
-                if(Game.getObjectById(creep.memory.destination).hits > (creep.memory.targetHP + 20000)) {
+                if(Game.getObjectById(creep.memory.destination).hits > (creep.memory.targetHP + hpUntilRetarget)) {
                     console.log("Looking for a new Target");
                     creep.memory.foundTarget = false;
                 } else {
@@ -38,7 +53,7 @@ module.exports = {
                 }
                 
             }
-        }  else {
+        } else {
             var targets = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_STORAGE) &&

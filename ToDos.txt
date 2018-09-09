@@ -1,9 +1,9 @@
 Ideen:
 ----------------------
-Automatische Erkennung des Controllerlevels des Raums 
+Automatische Erkennung des Controllerlevels des Raums   --> Erkennung schon implementiert. (siehe spawning.js)
 und anhand dessen eine angepasste KI (koennte ne Weile dauern. ^^)
 ----------------------
-Neuer Spawning Algorithmus (aus der main auslagern)
+Neuer Spawning Algorithmus (aus der main auslagern)   -> schon angefangen.
 
 Koennte beinhalten:
 
@@ -40,4 +40,10 @@ angegriffen wird, und der Turmschaden nicht ausreicht, um das Dorf mit allen Mit
 
 - Heiler (Logik für eine Heilerklasse implementieren)
 --> Heilt (geschwaechtesten?) Soldat, und versucht moeglichst viele Einheiten moeglichst lange am Leben zu halten.
+----------------------
+Scavenger:
+
+Entweder als neue Rolle, oder besser anderen Klassen diese Aufgabe uebertragen.
+
+d.h. creeps, die fallen gelassene Rohstoffe aufheben und lagern. (z.B. durch Tod fallengelassene Energie)
 ----------------------

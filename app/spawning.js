@@ -7,8 +7,16 @@
  * mod.thing == 'a thing'; // true
  */
 
+ /*
+ * This might be usefull:
+ * room.energyAvailable; 
+ * 
+ * Gives the amount of energy in the room available for spawning. (spawners, extensions)
+ */
 module.exports = {
     spawn_main: function(room, creeps) {
+
+    var HOME = room.name;
 
     spawners = room.find(FIND_STRUCTURES, {
         filter: (structure) => {
@@ -21,12 +29,9 @@ module.exports = {
 
     if(spawners.length > 0) { 
         Spawn1 = spawners[0].name;
-        console.log('I was here');
         if(spawners.length > 1) { Spawn2 = spawners[1].name;}
     };
 
-    var HOME = room.name;
-    
 
     //Counts the number of certain workers in the room.
     var harvesters = 0;
@@ -62,14 +67,35 @@ module.exports = {
         // The case that no spawner exists must be checked. (you can own a controller without having a spawner)
         switch(room.controller.level) {
             case 1:
+                if(harvesterNotfall < 3){
+                    var newName = "Harvester_" + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([CARRY,CARRY,WORK,MOVE], newName,
+                        {memory: {role: 'harvesterNotfall',home: HOME}});
+                }
                 break;
             case 2: 
                 break;
             case 3:
-                if(harvesters < 1) {
-                    var newName = 'Harvester_' + HOME + '_' +  Game.time;
-                    Game.spawns[Spawn1].spawnCreep([WORK,WORK,WORK,WORK,WORK,MOVE], newName, 
-                        {memory: {role: 'harvester',home: HOME}});
+                containers = room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_CONTAINER) 
+                    }
+                });
+                if(containers.length > 0) {
+                    var pos1 = containers[0].pos;
+                    if(harvesters < 1) {
+                        var newName = 'Harvester_' + HOME + '_' +  Game.time;
+                        Game.spawns[Spawn1].spawnCreep([WORK,WORK,WORK,WORK,WORK,MOVE], newName, 
+                            {memory: {role: 'harvester',home: HOME,dest: pos1}});
+                    }
+                    if(containers.length > 1) {
+                        var pos2 = containers[1].pos;
+                        if(harvesters0 < 1) {
+                            var newName = 'Harvester_' + HOME + '_' +  Game.time;
+                            Game.spawns[Spawn1].spawnCreep([WORK,WORK,WORK,WORK,WORK,MOVE], newName, 
+                                {memory: {role: 'harvester0',home: HOME,dest: pos2}});
+                        }
+                    }
                 }
                 if(transporters < 1) {
                     var newName = 'Transporter_' + HOME + '_' +  Game.time;
@@ -98,6 +124,52 @@ module.exports = {
                 }
                 break;
             case 4:
+                containers = room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_CONTAINER) 
+                    }
+                });
+                if(containers.length > 0) {
+                    var pos1 = containers[0].pos;
+                    if(harvesters < 1) {
+                        var newName = 'Harvester_' + HOME + '_' +  Game.time;
+                        Game.spawns[Spawn1].spawnCreep([WORK,WORK,WORK,WORK,WORK,MOVE], newName, 
+                            {memory: {role: 'harvester',home: HOME,dest: pos1}});
+                    }
+                    if(containers.length > 1) {
+                        var pos2 = containers[1].pos;
+                        if(harvesters0 < 1) {
+                            var newName = 'Harvester_' + HOME + '_' +  Game.time;
+                            Game.spawns[Spawn1].spawnCreep([WORK,WORK,WORK,WORK,WORK,MOVE], newName, 
+                                {memory: {role: 'harvester0',home: HOME,dest: pos2}});
+                        }
+                    }
+                }
+                if(transporters < 2) {
+                    var newName = 'Transporter_' + HOME + '_' +  Game.time;
+                    Game.spawns[Spawn1].spawnCreep([CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
+                        {memory: {role: 'transporter',home: HOME}});
+                }
+                if(upgraders < 3) {
+                    var newName = 'Upgrader_' + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
+                        {memory: {role: 'upgrader',home: HOME}});
+                }
+                if(repairers < 1) {
+                    var newName = 'Repairer_' + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, 
+                        {memory: {role: 'repairer',home: HOME}});
+                }
+                if(builders < 2) {
+                    var newName = 'Builder_' + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE,MOVE], newName, 
+                        {memory: {role: 'builder',home: HOME}});
+                }
+                if(repairersWall < 1) {
+                    var newName = 'WallRepairer_' + HOME + '_' + Game.time;
+                    Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], newName, 
+                        {memory: {role: 'repairerWall',home: HOME}});
+                }
                 break;
             case 5:
                 break;
