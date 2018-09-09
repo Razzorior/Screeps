@@ -14,7 +14,7 @@ export class RoleUpgrader {
 
         if ((creep.memory as CustomCreepMemory).upgrading) {
             if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.room.controller, { ignoreCreeps: true, visualizePathStyle: { stroke: '#ffffff' } });
+                creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' } });
             }
 
         }
@@ -33,7 +33,7 @@ export class RoleUpgrader {
             });
             if (targets.length > 0) {
                 if (creep.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], { ignoreCreeps: true, visualizePathStyle: { stroke: '#ffaa00' } });
+                    creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffaa00' } });
                 }
             } else {
                 creep.say("No energy!");
