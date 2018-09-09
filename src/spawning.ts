@@ -1,3 +1,5 @@
+import { CustomCreepMemory } from "./custom-creep-memory";
+
 /*
  * Module code goes here. Use 'module.exports' to export things:
  * module.exports.thing = 'a thing';
@@ -44,19 +46,19 @@ export class Spawning {
         var harvesterNotfall = 0;
         for (var name in creeps) {
             var creep = creeps[name];
-            if (creep.memory.role == 'harvester') { harvesters++; }
-            if (creep.memory.role == 'harvester0') { harvesters0++ }
-            if (creep.memory.role == 'upgrader') { upgraders++; }
-            if (creep.memory.role == 'builder') { builders++; }
-            if (creep.memory.role == 'repairer') { repairers++; }
-            if (creep.memory.role == 'repairerWall') { repairersWall++; }
-            if (creep.memory.role == 'transporter') { transporters++; }
-            if (creep.memory.role == 'importHarvester') { importHarvesters++; }
-            if (creep.memory.role == 'importHarvester1') { importHarvesters1++; }
-            if (creep.memory.role == 'patrol') { patrols++; }
-            if (creep.memory.role == 'reserver') { reservers++; }
-            if (creep.memory.role == 'claimer') { claimers++; }
-            if (creep.memory.role == 'harvesterNotfall') { harvesterNotfall++; }
+            if ((creep.memory as CustomCreepMemory).role == 'harvester') { harvesters++; }
+            if ((creep.memory as CustomCreepMemory).role == 'harvester0') { harvesters0++ }
+            if ((creep.memory as CustomCreepMemory).role == 'upgrader') { upgraders++; }
+            if ((creep.memory as CustomCreepMemory).role == 'builder') { builders++; }
+            if ((creep.memory as CustomCreepMemory).role == 'repairer') { repairers++; }
+            if ((creep.memory as CustomCreepMemory).role == 'repairerWall') { repairersWall++; }
+            if ((creep.memory as CustomCreepMemory).role == 'transporter') { transporters++; }
+            if ((creep.memory as CustomCreepMemory).role == 'importHarvester') { importHarvesters++; }
+            if ((creep.memory as CustomCreepMemory).role == 'importHarvester1') { importHarvesters1++; }
+            if ((creep.memory as CustomCreepMemory).role == 'patrol') { patrols++; }
+            if ((creep.memory as CustomCreepMemory).role == 'reserver') { reservers++; }
+            if ((creep.memory as CustomCreepMemory).role == 'claimer') { claimers++; }
+            if ((creep.memory as CustomCreepMemory).role == 'harvesterNotfall') { harvesterNotfall++; }
         }
 
         // The case that no spawner exists must be checked. (you can own a controller without having a spawner)
@@ -112,10 +114,10 @@ export class Spawning {
         if (Game.spawns[Spawn1].spawning) {
             var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
             Game.spawns[Spawn1].room.visual.text(
-                '🛠️' + spawningCreep.memory.role,
+                '🛠️' + (spawningCreep.memory as CustomCreepMemory).role,
                 Game.spawns[Spawn1].pos.x - 2,
                 Game.spawns[Spawn1].pos.y + 1,
-                { align: 'top', opacity: 0.8 });
+                { valign: 'top', opacity: 0.8 } as TextStyle);
         }
 
     }

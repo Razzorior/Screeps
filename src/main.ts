@@ -29,9 +29,9 @@ export class Main {
             Spawning.spawn_main(room, creeps);
 
             //Simple Tower AI.
-            var towers = room.find(FIND_STRUCTURES, {
+            var towers: StructureTower[] = room.find(FIND_STRUCTURES, {
                 filter: (s) => s.structureType == STRUCTURE_TOWER
-            });
+            }).map(entry => entry as StructureTower);
             if (towers != undefined) {
                 for (let tower of towers) {
                     var target = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
@@ -50,3 +50,4 @@ export class Main {
             }
         }
     }
+}
