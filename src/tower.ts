@@ -1,5 +1,4 @@
 export class Tower {
-
     //Towerlogic type 1)
     public tower1(tower: any) {
 
@@ -8,5 +7,4 @@ export class Tower {
     public tower2(tower: any) {
 
     }
-
 }

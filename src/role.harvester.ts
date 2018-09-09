@@ -1,8 +1,6 @@
 import { CustomCreepMemory } from "./custom-creep-memory";
 
 export class RoleHarvester {
-
-    /** @param {Creep} creep **/
     public static run(creep: Creep) {
         if (creep.pos.x != (creep.memory as CustomCreepMemory).dest.x || creep.pos.y != (creep.memory as CustomCreepMemory).dest.y) {
             creep.moveTo((creep.memory as CustomCreepMemory).dest.x, (creep.memory as CustomCreepMemory).dest.y);

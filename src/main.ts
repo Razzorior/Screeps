@@ -1,6 +1,18 @@
 import { Spawning } from './spawning';
 import { CustomCreepMemory } from './custom-creep-memory';
 import { RoleHarvester } from './role.harvester';
+import { RoleBuilder } from './role.builder';
+import { RoleUpgrader } from './role.upgrader';
+import { RoleRepairer } from './role.repairer';
+import { RoleRepairerWall } from './role.repairerWall';
+import { RoleTransporter } from './role.transporter';
+import { RoleImportHarvester } from './role.importHarvester';
+import { RoleStartUpBuilder } from './role.startUpBuilder';
+import { RolePatrol } from './role.patrol';
+import { RoleReserver } from './role.reserver';
+import { RoleClaimer } from './role.claimer';
+import { RoleHarvesterNotfall } from './role.harvesterNotfall';
+import { RoleInvader } from './role.invader';
 
 export function loop() {
     // Checks if all creeps in the memory are still alive
@@ -162,28 +174,28 @@ export function loop() {
             RoleRepairerWall.run(creep);
         }
         if ((creep.memory as CustomCreepMemory).role == 'transporter') {
-            roleTransporter.run(creep);
+            RoleTransporter.run(creep);
         }
         if ((creep.memory as CustomCreepMemory).role == 'importHarvester') {
-            roleImportHarvester.run(creep);
+            RoleImportHarvester.run(creep);
         }
         if ((creep.memory as CustomCreepMemory).role == 'importHarvester1') {
-            roleStartUpBuilder.run(creep);
+            RoleStartUpBuilder.run(creep);
         }
         if ((creep.memory as CustomCreepMemory).role == 'patrol') {
-            rolePatrol.run(creep);
+            RolePatrol.run(creep);
         }
         if ((creep.memory as CustomCreepMemory).role == 'reserver') {
-            roleReserver.run(creep);
+            RoleReserver.run(creep);
         }
         if ((creep.memory as CustomCreepMemory).role == 'claimer') {
-            roleClaimer.run(creep);
+            RoleClaimer.run(creep);
         }
         if ((creep.memory as CustomCreepMemory).role == 'harvesterNotfall') {
-            roleHarvesterNotfall.run(creep);
+            RoleHarvesterNotfall.run(creep);
         }
         if ((creep.memory as CustomCreepMemory).role == 'invader') {
-            roleInvader.run(creep);
+            RoleInvader.run(creep);
         }
     }
 }

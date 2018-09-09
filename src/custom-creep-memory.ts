@@ -7,6 +7,3 @@ export interface CustomCreepMemory extends CreepMemory {
     dest: RoomPosition;
 
 }
-function extend<CreepMemory>(obj: CreepMemory): string {
-    return obj as CustomCreepMemory;
-}
