@@ -18,7 +18,7 @@ module.exports = {
 
     var HOME = room.name;
 
-    spawners = room.find(FIND_STRUCTURES, {
+    spawners = room.find(FIND_MY_STRUCTURES, {
         filter: (structure) => {
             return (structure.structureType == STRUCTURE_SPAWN) 
         }
@@ -32,7 +32,7 @@ module.exports = {
         if(spawners.length > 1) { Spawn2 = spawners[1].name;}
     };
 
-
+    if(spawners.length > 0) {
     //Counts the number of certain workers in the room.
     var harvesters = 0;
     var harvesters0 = 0;
@@ -172,7 +172,7 @@ module.exports = {
                     Game.spawns[Spawn1].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], newName, 
                         {memory: {role: 'repairerWall',home: HOME}});
                 }
-                if(invaders < 2) { 
+                if(invaders < 0) { 
                     var newName = 'HelloKitty_' + HOME + '_' + Game.time;
                     Game.spawns[Spawn1].spawnCreep([TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,MOVE,ATTACK,MOVE,ATTACK,MOVE,ATTACK,MOVE,ATTACK,MOVE], newName, 
                         {memory: {role: 'invader',home: HOME,target: 'W58N58'}});
@@ -187,14 +187,14 @@ module.exports = {
             case 8:
                 break;
         }
-        
-        if(Game.spawns[Spawn1].spawning) { 
-            var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
-            Game.spawns[Spawn1].room.visual.text(
-                '🛠️' + spawningCreep.memory.role,
-                Game.spawns[Spawn1].pos.x-2, 
-                Game.spawns[Spawn1].pos.y+1, 
-                {align: 'top', opacity: 0.8});
+            if(Game.spawns[Spawn1].spawning) { 
+                var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
+                Game.spawns[Spawn1].room.visual.text(
+                    '🛠️' + spawningCreep.memory.role,
+                    Game.spawns[Spawn1].pos.x-2, 
+                    Game.spawns[Spawn1].pos.y+1, 
+                    {align: 'top', opacity: 0.8});
+            }
         }
         
     }
